@@ -29,8 +29,7 @@ public class HomeControllerTests
             controller.Index()?.ViewData.Model as ProductsListViewModel ?? new();
 
         // Assert
-        Product[] prodArray = result.Products.ToArray();
-            ?? Array.Empty<Product>();
+        Product[] prodArray = result.Products.ToArray() ?? Array.Empty<Product>();
         Assert.True(prodArray.Length == 2);
         Assert.Equal("P1", prodArray[0].Name);
         Assert.Equal("P2", prodArray[1].Name);
