@@ -52,13 +52,11 @@ public class HomeControllerTests
         controller.PageSize = 3;
 
         // Act
-        IEnumerable<Product> result =
-            (controller.Index(2) as ViewResult)?.ViewData.Model
-                as IEnumerable<Product>
-                    ?? Enumerable.Empty<Product>();
+        ProductsListViewModel result =
+            controller.Index(2)?.ViewData.Model as ProductsListViewModel ?? new();
 
         // Assert
-        Product[] prodArray = result.ToArray();
+        Product[] prodArray = result?.Products.ToArray() ?? Array.Empty<Product>();
         Assert.True(prodArray.Length == 2);
         Assert.Equal("P4", prodArray[0].Name);
         Assert.Equal("P5", prodArray[1].Name);
